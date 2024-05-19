@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: time-client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tclient
+  template:
+    metadata:
+      labels:
+        app: tclient
+    spec:
+      containers:
+      - name: tclient
+        image: time-client:latest
+        imagePullPolicy: Never
+        volumeMounts:
+        - name: log-volume
+          mountPath: /data
+      volumes:
+      - name: log-volume
+        hostPath:
+          path: /etc/tclient
+          type: DirectoryOrCreate
