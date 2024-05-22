@@ -13,6 +13,8 @@ class MyHTTPHandler(BaseHTTPRequestHandler):
             self.wfile.write(current_time.encode())
 
             MyHTTPHandler.time_requests += 1
+            with open('statistics.txt', 'w') as file:
+                file.write(str(MyHTTPHandler.time_requests))
 
         elif self.path == '/statistics':
             self.send_response(200)

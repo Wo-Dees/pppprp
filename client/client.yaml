@@ -16,11 +16,4 @@ spec:
       - name: tclient
         image: time-client:latest
         imagePullPolicy: Never
-        volumeMounts:
-        - name: log-volume
-          mountPath: /data
-      volumes:
-      - name: log-volume
-        hostPath:
-          path: /etc/tclient
-          type: DirectoryOrCreate
+    
